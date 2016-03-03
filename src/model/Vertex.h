@@ -9,16 +9,13 @@ class Vertex {
 
 public:
 
-    int dado, cor, cronometro;
-    float distancia;
-    Vertex *pai;
+    int data, color, chronometer;
+    float vertexDistance;
+    Vertex *father;
+    list<Vertex *> adjacentVertex;
+    list<Vertex *>::iterator vertexIterator;
 
-    //Lista criada permitindo inserir ou remover vértices
-    list<Vertex *> verticeAdjacente;
-    //Iterator "lerVertice" criado para ler ou modificar qualquer elemento da lista
-    list<Vertex *>::iterator lerVertice;
-
-    Vertex(int dado);
+    Vertex(int data);
 
     ~Vertex();
 };

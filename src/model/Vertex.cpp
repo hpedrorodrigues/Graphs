@@ -1,14 +1,14 @@
 #include "Vertex.h"
 
-Vertex::Vertex(int dado) {
-    this->dado = dado;
-    this->cor = cor;
-    this->distancia = distancia;
-    this->pai = pai;
-    this->cronometro = cronometro;
+Vertex::Vertex(int data) {
+    this->data = data;
+    this->color = color;
+    this->vertexDistance = vertexDistance;
+    this->father = father;
+    this->chronometer = chronometer;
 };
 
 Vertex::~Vertex() {
-    this->dado = 0;
-    verticeAdjacente.clear();
+    this->data = 0;
+    adjacentVertex.clear();
 };

@@ -13,62 +13,62 @@ using namespace std;
 class Graph {
 
 public:
-    /*Os mapas  armazenam elementos associativos formados por uma combina��o
-      de um valor de chave e um valor mapeado, seguindo uma ordem espec�fica.*/
-    /*Em um mapa, os valores chave s�o geralmente utilizados para classificar
+    /*Os mapas  armazenam elementos associativos formados por uma combinação
+      de um valor de chave e um valor mapeado, seguindo uma ordem específica.*/
+    /*Em um mapa, os valores chave são geralmente utilizados para classificar
      e identificar exclusivamente os elementos, enquanto que os valores
-     mapeados armazenar o conte�do associado a esta chave.*/
+     mapeados armazenar o conteúdo associado a esta chave.*/
 
     map<int, Vertex *> Dmap;
     map<int, Vertex *>::iterator lerVertDmap;
 
-    //Map criado para armazenar vertices a partir de um id �nico
-    map<int, Vertex *> vertice;
+    //Map criado para armazenar vertices a partir de um id único
+    map<int, Vertex *> vertex;
 
     //Iteratores "lerVert" e "lerVertAdjacente" criados para ler ou modificar quaisquer elementos em um map
-    map<int, Vertex *>::iterator lerVert;
-    map<int, Vertex *>::iterator lerVertAdjacente;
+    map<int, Vertex *>::iterator vertexToReadIterator;
+    map<int, Vertex *>::iterator adjacentVertexToReadIterator;
 
-    //Map criado para armazenar arestas a partir de um id �nico
+    //Map criado para armazenar arestas a partir de um id único
     //Iterator "lerAresta" criado para ler ou modificar qualquer elemento em um map
-    map<int, Edge *> aresta;
-    map<int, Edge *>::iterator lerAresta;
+    map<int, Edge *> edge;
+    map<int, Edge *>::iterator edgeToReadIterator;
 
-    int **pesoEntreArestas;
+    int **weightBetweenEdges;
 
-    void setPesoEntreVertices(int vOrigem, int vDestino, int peso);
+    void setPesoEntreVertices(int originVertexId, int destinationVertexId, int weight);
 
-    int getPesoEntreVertices(int vOrigem, int vDestino);
+    int getPesoEntreVertices(int originVertexId, int destinationVertexId);
 
     Vertex *extrairMinimo(Vertex *u, Vertex *s, list<int> Dlist);
 
-    //Verifica, a partir do id, se o v�rtice existe
-    bool existeVertice(int id);
+    //Verifica, a partir do id, se o vértice existe
+    bool existeVertice(int vertexId);
 
     //Verifica, a partir do id, se a aresta existe
-    bool existeAresta(int id);
+    bool existeAresta(int edgeId);
 
-    //Insere aresta a partir de um id �nico v�rtice origem e destino passados
-    void inserirAresta(int idAresta, int verticeOrigem, int verticeDestino, int peso);
+    //Insere aresta a partir de um id único vértice origem e destino passados
+    void inserirAresta(int edgeId, int originVertexId, int destinationVertexId, int weight);
 
-    //Adiciona um v�rtice adjacente a partir do v�rtice origem
+    //Adiciona um vértice adjacente a partir do vértice origem
     void adicionarVerticeAdjacente(int idVertice, int idVerticeAdjacente);
 
-    //Remove aresta a partir de um id �nico
+    //Remove aresta a partir de um id único
     void removerAresta(int idAresta);
 
-    //Remove um v�rtice adjacente a partir do v�rtice origem
+    //Remove um vértice adjacente a partir do vértice origem
     void removerVerticeAdjacente(int idVertice, int idVerticeAdj);
 
-    //Inserir novo v�rtice no vetor passando id �nico e valor do v�rtice
+    //Inserir novo vértice no vetor passando id único e valor do vértice
     void inserirVertice(int idVertice, int dado);
 
-    //Remover v�rtice do grafo a partir do id
+    //Remover vértice do grafo a partir do id
     void removerVertice(int idVertice);
 
     void removerVerticeDoGrafoPorId(int idVertice);
 
-    //Exibe a lista de adjac�ncia
+    //Exibe a lista de adjacência
     void imprimirGrafo();
 
     void buscaEmLargura();

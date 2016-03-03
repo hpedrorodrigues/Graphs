@@ -6,9 +6,9 @@ class Edge {
 
 public:
 
-    int verticeOrigem, verticeDestino, peso;
+    int originVertexId, destinationVertexId, weight;
 
-    Edge(int idVertice1, int idVertice2, int p);
+    Edge(int originVertexId, int destinationVertexId, int weight);
 
     ~Edge();
 };
