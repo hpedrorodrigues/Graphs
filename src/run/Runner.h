@@ -20,6 +20,8 @@ public:
 
     void breakLines();
 
+    void pause();
+
 };
 
 

@@ -10,4 +10,4 @@ $(EXECUTABLE): $(OBJECTS) ; $(CC) $(OBJECTS) -o $@
 
 .cpp.o: ; $(CC) $(CFLAGS) $< -o $@
 
-clean: ; rm $(OBJECTS)
+clean: ; rm $(OBJECTS) ; rm graphs

@@ -1,133 +1,178 @@
 #include "Runner.h"
 
 void Runner::run() {
-    Graph *grafo = new Graph();
-    int opcao, peso, idAresta, verticeOrigem, verticeDestino, idVertice;
+    Graph *graph = new Graph();
+    int option, weight, edgeId, originVertexId, destinationVertexId, vertexId;
 
     do {
         this->showOptions();
-        cout << "Digite o numero da opcao desejada: ";
+        cout << endl << "Choose a option: ";
         this->breakLines();
-        cin >> opcao;
+        cin >> option;
 
-        switch (opcao) {
+        switch (option) {
             case Constants::Option::INSERT_VERTEX:
-                //Inserir Vértice
-                cout << "Digite o id do vertice: ";
-                cin >> idVertice;
+                cout << "Type vertex id to insert :)";
+                cin >> vertexId;
 
-                if (grafo->hasVertex(idVertice)) {
-                    cout << "Vertex já existente!";
+                if (graph->hasVertex(vertexId)) {
+
+                    cout << "Existent vertex :(";
                     this->breakLines();
-                    system("pause");
+                    this->pause();
                 } else {
-                    grafo->insertVertex(idVertice, idVertice);
+
+                    graph->insertVertex(vertexId, vertexId);
                 }
 
                 this->clearConsole();
-                grafo->showStructure();
+                graph->showStructure();
+
                 break;
 
             case Constants::Option::REMOVE_VERTEX:
-                //Remover Vértice
-                cout << "Digite o id do vertice a ser removido: ";
-                cin >> idVertice;
+                cout << "Type vertex id to remove :)" << endl;
+                cin >> vertexId;
 
-                if (grafo->hasVertex(idVertice)) {
-                    grafo->removeVertex(idVertice);
+                if (graph->hasVertex(vertexId)) {
+
+                    graph->removeVertex(vertexId);
                 } else {
-                    cout << "Vertex não existente!";
+
+                    cout << "Nonexistent vertex :(";
                     this->breakLines();
-                    system("pause");
+                    this->pause();
                 }
 
                 this->clearConsole();
-                grafo->showStructure();
+                graph->showStructure();
+
                 break;
 
             case Constants::Option::INSERT_EDGE:
-                //Inserir Edge
-                cout << "Digite o id da aresta: ";
-                cin >> idAresta;
+                cout << "Type edge id to insert :)";
+                cin >> edgeId;
 
-                if (grafo->hasEdge(idAresta)) {
-                    cout << "Edge existente!";
+                if (graph->hasEdge(edgeId)) {
+
+                    cout << "Existent edge :(";
+
                     this->breakLines();
-                    system("pause");
+                    this->pause();
                 } else {
-                    cout << "Digite o id do vertice origem: ";
-                    cin >> verticeOrigem;
-                    cout << "Digite o id do vertice destino: ";
-                    cin >> verticeDestino;
-                    if (grafo->hasVertex(verticeOrigem) && grafo->hasVertex(verticeDestino)) {
-                        cout << "Digite o peso da aresta: ";
-                        cin >> peso;
-                        grafo->insertEdge(idAresta, verticeOrigem, verticeDestino, peso);
+
+                    cout << "Type origin vertex id :)";
+                    cin >> originVertexId;
+
+                    cout << "Type destination vertex id :)";
+                    cin >> destinationVertexId;
+
+                    if (graph->hasVertex(originVertexId) && graph->hasVertex(destinationVertexId)) {
+
+                        cout << "Type weight of edge :)";
+                        cin >> weight;
+                        graph->insertEdge(edgeId, originVertexId, destinationVertexId, weight);
                     } else {
-                        cout << "Vertices inválidos!";
+
+                        cout << "Invalid vertices :(";
+
                         this->breakLines();
-                        system("pause");
+                        this->pause();
                     }
                 }
 
                 this->clearConsole();
-                grafo->showStructure();
+
+                graph->showStructure();
+
                 break;
 
             case Constants::Option::REMOVE_EDGE:
-                //Remover Edge
-                cout << "Digite o id da aresta: ";
-                cin >> idAresta;
+                cout << "Type edge id to remove :)";
+                cin >> edgeId;
 
-                if (grafo->hasEdge(idAresta)) {
-                    grafo->removeEdge(idAresta);
+                if (graph->hasEdge(edgeId)) {
+
+                    graph->removeEdge(edgeId);
                 } else {
-                    cout << "Edge não existente!";
+
+                    cout << "Nonexistent edge :(";
+
                     this->breakLines();
-                    system("pause");
+                    this->pause();
                 }
 
                 this->clearConsole();
-                grafo->showStructure();
+                graph->showStructure();
+
                 break;
 
             case Constants::Option::SHOW_STRUCTURE:
+
                 this->clearConsole();
-                grafo->showStructure();
+
+                cout << "Adjacency list";
+
+                this->breakLines();
+
+                graph->showStructure();
+
                 break;
 
             case Constants::Option::SHOW_TREE_WIDTH:
+
                 this->clearConsole();
-                cout << "Graph - Algoritmo de Busca em Largura";
+
+                cout << "Breadth-first search (BFS)";
+
                 this->breakLines();
-                grafo->showTreeWidth();
+
+                graph->showTreeWidth();
+
                 break;
 
             case Constants::Option::SHOW_TREE_DEPTH:
+
                 this->clearConsole();
-                cout << "Graph - Algoritmo de Busca em Profundidade";
+
+                cout << "Depth-first search (DFS)";
+
                 this->breakLines();
-                grafo->showTreeDepth();
+
+                graph->showTreeDepth();
+
                 break;
 
             case Constants::Option::SHOW_SHORTEST_PATH:
+
                 this->clearConsole();
-                cout << "Graph - Algoritmo de Busca por Caminho Mínimo";
+
+                cout << "Dijkstra's algorithm (shortest path)";
+
                 this->breakLines();
-                grafo->showShortestPath();
+
+                graph->showShortestPath();
+
                 break;
 
             case Constants::Option::EXIT:
-                cout << "Saindo...";
+
+                cout << "Thx ... :)";
+
                 this->breakLines();
+
                 break;
 
             default:
+
                 this->clearConsole();
-                cout << "Opção inválida, tente novamente.";
+
+                cout << "Invalid option, please, try again.";
+
                 this->breakLines();
         }
-    } while (opcao != Constants::Option::EXIT);
+
+    } while (option != Constants::Option::EXIT);
 }
 
 void Runner::clearConsole() {
@@ -135,22 +180,28 @@ void Runner::clearConsole() {
 }
 
 void Runner::showOptions() {
-    cout << "  ---------------Graphs--------------\n";
-    cout << "  |                                 |\n";
-    cout << "  | " << Constants::Option::INSERT_VERTEX << " - Insert Vertex               |\n";
-    cout << "  | " << Constants::Option::REMOVE_VERTEX << " - Remove Vertex               |\n";
-    cout << "  | " << Constants::Option::INSERT_EDGE << " - Insert Edge                 |\n";
-    cout << "  | " << Constants::Option::REMOVE_EDGE << " - Remove Edge                 |\n";
-    cout << "  | " << Constants::Option::SHOW_STRUCTURE << " - Show Structure              |\n";
-    cout << "  | " << Constants::Option::SHOW_TREE_WIDTH << " - Show Tree Width             |\n";
-    cout << "  | " << Constants::Option::SHOW_TREE_DEPTH << " - Show Tree Depth             |\n";
-    cout << "  | " << Constants::Option::SHOW_SHORTEST_PATH << " - Show shortest path          |\n";
-    cout << "  | " << Constants::Option::EXIT << " - Exit                        |\n";
-    cout << "  |                                 |\n";
-    cout << "  -----------------------------------\n";
+    cout << "  ---------------------------------------------\n";
+    cout << "  |                  Graphs                   |\n";
+    cout << "  |-------------------------------------------|\n";
+    cout << "  |                                           |\n";
+    cout << "  | " << Constants::Option::INSERT_VERTEX << " - Insert Vertex                         |\n";
+    cout << "  | " << Constants::Option::REMOVE_VERTEX << " - Remove Vertex                         |\n";
+    cout << "  | " << Constants::Option::INSERT_EDGE << " - Insert Edge                           |\n";
+    cout << "  | " << Constants::Option::REMOVE_EDGE << " - Remove Edge                           |\n";
+    cout << "  | " << Constants::Option::SHOW_STRUCTURE << " - Adjacency list                        |\n";
+    cout << "  | " << Constants::Option::SHOW_TREE_WIDTH << " - Breadth-first search (BFS)            |\n";
+    cout << "  | " << Constants::Option::SHOW_TREE_DEPTH << " - Depth-first search (DFS)              |\n";
+    cout << "  | " << Constants::Option::SHOW_SHORTEST_PATH << " - Dijkstra's algorithm (shortest path)  |\n";
+    cout << "  | " << Constants::Option::EXIT << " - Exit                                  |\n";
+    cout << "  |                                           |\n";
+    cout << "  ---------------------------------------------\n";
     cout << endl;
 }
 
 void Runner::breakLines() {
     cout << endl << endl;
+}
+
+void Runner::pause() {
+    system("pause");
 }
