@@ -107,7 +107,7 @@ void Runner::run() {
 
                 break;
 
-            case Constants::Option::SHOW_STRUCTURE:
+            case Constants::Option::SHOW_ADJACENCY_LIST:
 
                 this->clearConsole();
 
@@ -119,7 +119,7 @@ void Runner::run() {
 
                 break;
 
-            case Constants::Option::SHOW_TREE_WIDTH:
+            case Constants::Option::SHOW_BREADTH_FIRST_SEARCH:
 
                 this->clearConsole();
 
@@ -131,7 +131,7 @@ void Runner::run() {
 
                 break;
 
-            case Constants::Option::SHOW_TREE_DEPTH:
+            case Constants::Option::SHOW_DEPTH_FIRST_SEARCH:
 
                 this->clearConsole();
 
@@ -188,9 +188,9 @@ void Runner::showOptions() {
     cout << "  | " << Constants::Option::REMOVE_VERTEX << " - Remove Vertex                         |\n";
     cout << "  | " << Constants::Option::INSERT_EDGE << " - Insert Edge                           |\n";
     cout << "  | " << Constants::Option::REMOVE_EDGE << " - Remove Edge                           |\n";
-    cout << "  | " << Constants::Option::SHOW_STRUCTURE << " - Adjacency list                        |\n";
-    cout << "  | " << Constants::Option::SHOW_TREE_WIDTH << " - Breadth-first search (BFS)            |\n";
-    cout << "  | " << Constants::Option::SHOW_TREE_DEPTH << " - Depth-first search (DFS)              |\n";
+    cout << "  | " << Constants::Option::SHOW_ADJACENCY_LIST << " - Adjacency list                        |\n";
+    cout << "  | " << Constants::Option::SHOW_BREADTH_FIRST_SEARCH << " - Breadth-first search (BFS)            |\n";
+    cout << "  | " << Constants::Option::SHOW_DEPTH_FIRST_SEARCH << " - Depth-first search (DFS)              |\n";
     cout << "  | " << Constants::Option::SHOW_SHORTEST_PATH << " - Dijkstra's algorithm (shortest path)  |\n";
     cout << "  | " << Constants::Option::EXIT << " - Exit                                  |\n";
     cout << "  |                                           |\n";

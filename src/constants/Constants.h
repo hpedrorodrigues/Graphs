@@ -14,9 +14,9 @@ public:
         static const int REMOVE_VERTEX = 2;
         static const int INSERT_EDGE = 3;
         static const int REMOVE_EDGE = 4;
-        static const int SHOW_STRUCTURE = 5;
-        static const int SHOW_TREE_WIDTH = 6;
-        static const int SHOW_TREE_DEPTH = 7;
+        static const int SHOW_ADJACENCY_LIST = 5;
+        static const int SHOW_BREADTH_FIRST_SEARCH = 6;
+        static const int SHOW_DEPTH_FIRST_SEARCH = 7;
         static const int SHOW_SHORTEST_PATH = 8;
         static const int EXIT = 9;
 
