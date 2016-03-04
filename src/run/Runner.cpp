@@ -7,6 +7,7 @@ void Runner::run() {
     do {
         this->showOptions();
         cout << "Digite o numero da opcao desejada: ";
+        this->breakLines();
         cin >> opcao;
 
         switch (opcao) {
@@ -134,16 +135,18 @@ void Runner::clearConsole() {
 }
 
 void Runner::showOptions() {
-    cout << "  ------------------Menu-------------\n";
-    cout << "  | " << Constants::Option::INSERT_VERTEX << " - Inserir Vértice             |\n";
-    cout << "  | " << Constants::Option::REMOVE_VERTEX << " - Remover Vértice             |\n";
-    cout << "  | " << Constants::Option::INSERT_EDGE << " - Inserir Aresta              |\n";
-    cout << "  | " << Constants::Option::REMOVE_EDGE << " - Remover Aresta              |\n";
-    cout << "  | " << Constants::Option::SHOW_STRUCTURE << " - Imprimir Estrutura          |\n";
-    cout << "  | " << Constants::Option::SHOW_TREE_WIDTH << " - Imprimir por Largura        |\n";
-    cout << "  | " << Constants::Option::SHOW_TREE_DEPTH << " - Imprimir por Profundidade   |\n";
-    cout << "  | " << Constants::Option::SHOW_SHORTEST_PATH << " - Imprimir por Caminho Mínimo |\n";
-    cout << "  | " << Constants::Option::EXIT << " - Sair                        |\n";
+    cout << "  ---------------Graphs--------------\n";
+    cout << "  |                                 |\n";
+    cout << "  | " << Constants::Option::INSERT_VERTEX << " - Insert Vertex               |\n";
+    cout << "  | " << Constants::Option::REMOVE_VERTEX << " - Remove Vertex               |\n";
+    cout << "  | " << Constants::Option::INSERT_EDGE << " - Insert Edge                 |\n";
+    cout << "  | " << Constants::Option::REMOVE_EDGE << " - Remove Edge                 |\n";
+    cout << "  | " << Constants::Option::SHOW_STRUCTURE << " - Show Structure              |\n";
+    cout << "  | " << Constants::Option::SHOW_TREE_WIDTH << " - Show Tree Width             |\n";
+    cout << "  | " << Constants::Option::SHOW_TREE_DEPTH << " - Show Tree Depth             |\n";
+    cout << "  | " << Constants::Option::SHOW_SHORTEST_PATH << " - Show shortest path          |\n";
+    cout << "  | " << Constants::Option::EXIT << " - Exit                        |\n";
+    cout << "  |                                 |\n";
     cout << "  -----------------------------------\n";
     cout << endl;
 }
