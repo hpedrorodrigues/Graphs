@@ -2,10 +2,6 @@
 
 Vertex::Vertex(int data) {
     this->data = data;
-    this->color = color;
-    this->vertexDistance = vertexDistance;
-    this->father = father;
-    this->chronometer = chronometer;
 };
 
 Vertex::~Vertex() {

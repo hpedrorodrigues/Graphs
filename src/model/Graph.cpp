@@ -1,14 +1,20 @@
 #include "Graph.h"
 
-void Graph::setPesoEntreVertices(int originVertexId, int destinationVertexId, int weight) {
+Graph::Graph() {
+}
+
+Graph::~Graph() {
+}
+
+void Graph::setWeightBetweenVertices(int originVertexId, int destinationVertexId, int weight) {
     this->weightBetweenEdges[originVertexId][destinationVertexId] = weight;
 }
 
-int Graph::getPesoEntreVertices(int originVertexId, int destinationVertexId) {
+int Graph::getWeightBetweenVertices(int originVertexId, int destinationVertexId) {
     return this->weightBetweenEdges[originVertexId][destinationVertexId];
 }
 
-Vertex *Graph::extrairMinimo(Vertex *u, Vertex *s, list<int> Dlist) {
+Vertex *Graph::extractMinimum(Vertex *u, Vertex *s, list<int> Dlist) {
     // Iterator "lerVertD" criado para receber o elemento com menor distância da lista "D"
     list<int>::iterator lerVertDlist;
     // Retorna a menor distância da lista "Dlist"
@@ -25,7 +31,7 @@ Vertex *Graph::extrairMinimo(Vertex *u, Vertex *s, list<int> Dlist) {
     return u;
 }
 
-bool Graph::existeVertice(int vertexId) {
+bool Graph::hasVertex(int vertexId) {
     bool existe = false;
     /*.find() retorna um iterador que aponta para o local
      de um elemento em um mapa com uma chave igual a uma chave especificada*/
@@ -39,7 +45,7 @@ bool Graph::existeVertice(int vertexId) {
     return existe;
 }
 
-bool Graph::existeAresta(int edgeId) {
+bool Graph::hasEdge(int edgeId) {
     bool existe = false;
     /*.find() retorna um iterador que aponta para o local
      de um elemento em um mapa com uma chave igual a uma chave especificada*/
@@ -53,24 +59,24 @@ bool Graph::existeAresta(int edgeId) {
     return existe;
 }
 
-void Graph::inserirAresta(int edgeId, int originVertexId, int destinationVertexId, int weight) {
+void Graph::insertEdge(int edgeId, int originVertexId, int destinationVertexId, int weight) {
     Edge *a = new Edge(originVertexId, destinationVertexId, weight);
     //Adiciona um vértice adjacente a partir do vértice origem
-    adicionarVerticeAdjacente(originVertexId, destinationVertexId);
+    insertAdjacentVertex(originVertexId, destinationVertexId);
 
     //Adiciona o peso na aresta entre o vértice origem e destino
-    setPesoEntreVertices(a->originVertexId, a->destinationVertexId, a->weight);
+    setWeightBetweenVertices(a->originVertexId, a->destinationVertexId, a->weight);
 
     //Armazena uma nova aresta com id único e vértices de origem e destino
     edge[edgeId] = a;
 }
 
-void Graph::adicionarVerticeAdjacente(int idVertice, int idVerticeAdjacente) {
+void Graph::insertAdjacentVertex(int vertexId, int adjacentVertexId) {
     /*.find() retorna um iterador que aponta para o local
          de um elemento em um mapa com uma chave igual a uma chave especificada*/
     //Os iteratores devem receber os vértices encontrados a partir de seus id's
-    vertexToReadIterator = vertex.find(idVertice);
-    adjacentVertexToReadIterator = vertex.find(idVerticeAdjacente);
+    vertexToReadIterator = vertex.find(vertexId);
+    adjacentVertexToReadIterator = vertex.find(adjacentVertexId);
 
     //"->second" acessa o valor de referência mapeada para o elemento
     //O objeto v recebe o valor do vértice origem
@@ -81,7 +87,7 @@ void Graph::adicionarVerticeAdjacente(int idVertice, int idVerticeAdjacente) {
     v->adjacentVertex.push_back(adjacentVertexToReadIterator->second);
 }
 
-void Graph::removerAresta(int idAresta) {
+void Graph::removeEdge(int idAresta) {
     int idVertice1;
     int idVertice2;
     /*.find() retorna um iterador que aponta para o local
@@ -93,18 +99,18 @@ void Graph::removerAresta(int idAresta) {
     idVertice1 = edgeToReadIterator->second->originVertexId;
     idVertice2 = edgeToReadIterator->second->destinationVertexId;
     //Remove um vértice adjacente a partir do vértice origem
-    removerVerticeAdjacente(idVertice1, idVertice2);
+    removeAdjacentVertex(idVertice1, idVertice2);
     //.erase() Remove um elemento que corresponde a uma chave especificada.
     //A aresta é removida a partir de um id único
     edge.erase(idAresta);
 }
 
-void Graph::removerVerticeAdjacente(int idVertice, int idVerticeAdj) {
+void Graph::removeAdjacentVertex(int vertexId, int adjacentVertexId) {
     /*.find() retorna um iterador que aponta para o local
          de um elemento em um mapa com uma chave igual a uma chave especificada*/
     //Os iteratores devem receber os vértices encontrados a partir de seus id's
-    vertexToReadIterator = vertex.find(idVertice);
-    adjacentVertexToReadIterator = vertex.find(idVerticeAdj);
+    vertexToReadIterator = vertex.find(vertexId);
+    adjacentVertexToReadIterator = vertex.find(adjacentVertexId);
 
     //"->second" acessa o valor de referência mapeada para o elemento
     //O objeto v recebe o valor do vértice origem
@@ -114,9 +120,9 @@ void Graph::removerVerticeAdjacente(int idVertice, int idVerticeAdj) {
     v->adjacentVertex.remove(adjacentVertexToReadIterator->second);
 }
 
-void Graph::inserirVertice(int idVertice, int dado) {
-    Vertex *v = new Vertex(dado);
-    vertex[idVertice] = v;
+void Graph::insertVertex(int vertexId, int data) {
+    Vertex *v = new Vertex(data);
+    vertex[vertexId] = v;
 
     //Inicializa as arestas com peso igual a 0
     weightBetweenEdges = (int **) malloc(vertex.size() * sizeof(int *));
@@ -130,35 +136,35 @@ void Graph::inserirVertice(int idVertice, int dado) {
         for (j_ = vertex.begin(); vertexToReadIterator != vertex.end(); vertexToReadIterator++) {
             i = i_->second;
             j = j_->second;
-            setPesoEntreVertices(i->data, j->data, 0);
+            setWeightBetweenVertices(i->data, j->data, 0);
         }
     }
 }
 
-void Graph::removerVertice(int idVertice) {
+void Graph::removeVertex(int vertexId) {
     Edge *arst;
     for (edgeToReadIterator = edge.begin(); edgeToReadIterator != edge.end(); edgeToReadIterator++) {
         arst = edgeToReadIterator->second;
-        if (arst->destinationVertexId == idVertice) {
-            removerVerticeAdjacente(arst->originVertexId, arst->destinationVertexId);
-            removerAresta(edgeToReadIterator->first);
+        if (arst->destinationVertexId == vertexId) {
+            removeAdjacentVertex(arst->originVertexId, arst->destinationVertexId);
+            removeEdge(edgeToReadIterator->first);
         }
-        if (arst->originVertexId == idVertice) {
-            removerAresta(edgeToReadIterator->first);
+        if (arst->originVertexId == vertexId) {
+            removeEdge(edgeToReadIterator->first);
         }
     }
-    removerVerticeDoGrafoPorId(idVertice);
+    removeVertexById(vertexId);
 }
 
-void Graph::removerVerticeDoGrafoPorId(int idVertice) {
+void Graph::removeVertexById(int vertexId) {
     Vertex *remove;
-    vertexToReadIterator = vertex.find(idVertice);
+    vertexToReadIterator = vertex.find(vertexId);
     remove = vertexToReadIterator->second;
     remove->~Vertex();
-    vertex.erase(idVertice);
+    vertex.erase(vertexId);
 }
 
-void Graph::imprimirGrafo() {
+void Graph::showStructure() {
     Vertex *v;
     cout << "Graph: \n\n";
     for (vertexToReadIterator = vertex.begin(); vertexToReadIterator != vertex.end(); vertexToReadIterator++) {
@@ -179,7 +185,7 @@ void Graph::imprimirGrafo() {
     cout << endl;
 }
 
-void Graph::buscaEmLargura() {
+void Graph::showTreeWidth() {
     Vertex *u, *s, *v;
     list<Vertex *> Q;
     list<Vertex *>::iterator lerVertQ;
@@ -226,7 +232,7 @@ void Graph::buscaEmLargura() {
     };
 }
 
-void Graph::buscaEmProfundidade() {
+void Graph::showTreeDepth() {
     Vertex *u, *s;
     // Pega o primeiro elemento da lista
     s = vertex.begin()->second;
@@ -244,35 +250,36 @@ void Graph::buscaEmProfundidade() {
         u = vertexToReadIterator->second;
         // cor = 0 (Branco) = Vértice não visitado
         if (u->color == 0)
-            buscaEmProfundidadeVisita(u, tempo);
+            showTreeDepthVisit(u, tempo);
     }
 }
 
-void Graph::buscaEmProfundidadeVisita(Vertex *u, int tempo) {
+void Graph::showTreeDepthVisit(Vertex *u, int time) {
     Vertex *v;
     // cor = 1 (Cinza) = Vértice sendo visitado
     u->color = 1;
-    tempo++;
+    time++;
     // Distância do vértice até a raiz
-    u->vertexDistance = tempo;
-    for (u->vertexIterator = u->adjacentVertex.begin(); u->vertexIterator != u->adjacentVertex.end(); u->vertexIterator++) {
+    u->vertexDistance = time;
+    for (u->vertexIterator = u->adjacentVertex.begin();
+         u->vertexIterator != u->adjacentVertex.end(); u->vertexIterator++) {
         v = *(u->vertexIterator);
         if (v->color == 0) {
             v->father = u;
             //Exibir vértices adjacentes
             cout << "  " << v->data << " -> ";
-            buscaEmProfundidadeVisita(v, tempo);
+            showTreeDepthVisit(v, time);
         }
     }
     cout << endl;
     // cor = 2 (Preto) = Vértice visitado
     u->color = 2;
-    tempo++;
+    time++;
     // cronometro guarda todos os intervalos de tempo
-    u->chronometer = tempo;
+    u->chronometer = time;
 }
 
-void Graph::buscaEmCaminhoMinimo() {
+void Graph::showShortestPath() {
     Vertex *v, *s, *u;
     // Lista "S" criada para guardar vértices visitados
     // Lista "Q" criada para guardar vértices não visitados
@@ -297,14 +304,14 @@ void Graph::buscaEmCaminhoMinimo() {
     Dlist.push_back(s->vertexDistance);
     while (Q.size() != 0) {
         //Extrai o elemento com menor distância
-        u = extrairMinimo(u, s, Dlist);
+        u = extractMinimum(u, s, Dlist);
 
         S.push_back(u);
         for (u->vertexIterator = u->adjacentVertex.begin();
              u->vertexIterator != u->adjacentVertex.end(); u->vertexIterator++) {
             v = *(u->vertexIterator);
-            if (v->vertexDistance > (u->vertexDistance + getPesoEntreVertices(u->data, v->data))) {
-                v->vertexDistance = (u->vertexDistance + getPesoEntreVertices(u->data, v->data));
+            if (v->vertexDistance > (u->vertexDistance + getWeightBetweenVertices(u->data, v->data))) {
+                v->vertexDistance = (u->vertexDistance + getWeightBetweenVertices(u->data, v->data));
                 v->father = u;
             }
             Dlist.push_back(v->vertexDistance);

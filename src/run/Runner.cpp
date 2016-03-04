@@ -15,16 +15,16 @@ void Runner::run() {
                 cout << "Digite o id do vertice: ";
                 cin >> idVertice;
 
-                if (grafo->existeVertice(idVertice)) {
+                if (grafo->hasVertex(idVertice)) {
                     cout << "Vertex já existente!";
                     this->breakLines();
                     system("pause");
                 } else {
-                    grafo->inserirVertice(idVertice, idVertice);
+                    grafo->insertVertex(idVertice, idVertice);
                 }
 
                 this->clearConsole();
-                grafo->imprimirGrafo();
+                grafo->showStructure();
                 break;
 
             case Constants::Option::REMOVE_VERTEX:
@@ -32,8 +32,8 @@ void Runner::run() {
                 cout << "Digite o id do vertice a ser removido: ";
                 cin >> idVertice;
 
-                if (grafo->existeVertice(idVertice)) {
-                    grafo->removerVertice(idVertice);
+                if (grafo->hasVertex(idVertice)) {
+                    grafo->removeVertex(idVertice);
                 } else {
                     cout << "Vertex não existente!";
                     this->breakLines();
@@ -41,7 +41,7 @@ void Runner::run() {
                 }
 
                 this->clearConsole();
-                grafo->imprimirGrafo();
+                grafo->showStructure();
                 break;
 
             case Constants::Option::INSERT_EDGE:
@@ -49,7 +49,7 @@ void Runner::run() {
                 cout << "Digite o id da aresta: ";
                 cin >> idAresta;
 
-                if (grafo->existeAresta(idAresta)) {
+                if (grafo->hasEdge(idAresta)) {
                     cout << "Edge existente!";
                     this->breakLines();
                     system("pause");
@@ -58,10 +58,10 @@ void Runner::run() {
                     cin >> verticeOrigem;
                     cout << "Digite o id do vertice destino: ";
                     cin >> verticeDestino;
-                    if (grafo->existeVertice(verticeOrigem) && grafo->existeVertice(verticeDestino)) {
+                    if (grafo->hasVertex(verticeOrigem) && grafo->hasVertex(verticeDestino)) {
                         cout << "Digite o peso da aresta: ";
                         cin >> peso;
-                        grafo->inserirAresta(idAresta, verticeOrigem, verticeDestino, peso);
+                        grafo->insertEdge(idAresta, verticeOrigem, verticeDestino, peso);
                     } else {
                         cout << "Vertices inválidos!";
                         this->breakLines();
@@ -70,7 +70,7 @@ void Runner::run() {
                 }
 
                 this->clearConsole();
-                grafo->imprimirGrafo();
+                grafo->showStructure();
                 break;
 
             case Constants::Option::REMOVE_EDGE:
@@ -78,8 +78,8 @@ void Runner::run() {
                 cout << "Digite o id da aresta: ";
                 cin >> idAresta;
 
-                if (grafo->existeAresta(idAresta)) {
-                    grafo->removerAresta(idAresta);
+                if (grafo->hasEdge(idAresta)) {
+                    grafo->removeEdge(idAresta);
                 } else {
                     cout << "Edge não existente!";
                     this->breakLines();
@@ -87,33 +87,33 @@ void Runner::run() {
                 }
 
                 this->clearConsole();
-                grafo->imprimirGrafo();
+                grafo->showStructure();
                 break;
 
             case Constants::Option::SHOW_STRUCTURE:
                 this->clearConsole();
-                grafo->imprimirGrafo();
+                grafo->showStructure();
                 break;
 
             case Constants::Option::SHOW_TREE_WIDTH:
                 this->clearConsole();
                 cout << "Graph - Algoritmo de Busca em Largura";
                 this->breakLines();
-                grafo->buscaEmLargura();
+                grafo->showTreeWidth();
                 break;
 
             case Constants::Option::SHOW_TREE_DEPTH:
                 this->clearConsole();
                 cout << "Graph - Algoritmo de Busca em Profundidade";
                 this->breakLines();
-                grafo->buscaEmProfundidade();
+                grafo->showTreeDepth();
                 break;
 
             case Constants::Option::SHOW_SHORTEST_PATH:
                 this->clearConsole();
                 cout << "Graph - Algoritmo de Busca por Caminho Mínimo";
                 this->breakLines();
-                grafo->buscaEmCaminhoMinimo();
+                grafo->showShortestPath();
                 break;
 
             case Constants::Option::EXIT:

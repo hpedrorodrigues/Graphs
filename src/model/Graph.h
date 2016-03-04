@@ -12,72 +12,85 @@ using namespace std;
 
 class Graph {
 
+private:
+
+    void removeVertexById(int vertexId);
+
 public:
-    /*Os mapas  armazenam elementos associativos formados por uma combinação
-      de um valor de chave e um valor mapeado, seguindo uma ordem específica.*/
-    /*Em um mapa, os valores chave são geralmente utilizados para classificar
-     e identificar exclusivamente os elementos, enquanto que os valores
-     mapeados armazenar o conteúdo associado a esta chave.*/
+
+    Graph();
+
+    ~Graph();
 
     map<int, Vertex *> Dmap;
     map<int, Vertex *>::iterator lerVertDmap;
 
-    //Map criado para armazenar vertices a partir de um id único
+    /**
+     * Mapa criado para armazenar vértices à partir de um id único.
+     */
     map<int, Vertex *> vertex;
 
-    //Iteratores "lerVert" e "lerVertAdjacente" criados para ler ou modificar quaisquer elementos em um map
+    /**
+     * Iteradores "vertexToReadIterator" e "adjacentVertexToReadIterator" foram criados para ler ou modificar quaisquer
+     * elementos em um mapa.
+     */
     map<int, Vertex *>::iterator vertexToReadIterator;
     map<int, Vertex *>::iterator adjacentVertexToReadIterator;
 
-    //Map criado para armazenar arestas a partir de um id único
-    //Iterator "lerAresta" criado para ler ou modificar qualquer elemento em um map
+    /**
+     * Mapa criado para armazenar arestas à partir de um id único.
+     *
+     * Iterador "edgeToReadIterator" foi criado para ler ou modificar qualquer elemento em um mapa.
+     */
     map<int, Edge *> edge;
     map<int, Edge *>::iterator edgeToReadIterator;
 
     int **weightBetweenEdges;
 
-    void setPesoEntreVertices(int originVertexId, int destinationVertexId, int weight);
+    void setWeightBetweenVertices(int originVertexId, int destinationVertexId, int weight);
 
-    int getPesoEntreVertices(int originVertexId, int destinationVertexId);
+    int getWeightBetweenVertices(int originVertexId, int destinationVertexId);
 
-    Vertex *extrairMinimo(Vertex *u, Vertex *s, list<int> Dlist);
+    Vertex *extractMinimum(Vertex *u, Vertex *s, list<int> Dlist);
 
-    //Verifica, a partir do id, se o vértice existe
-    bool existeVertice(int vertexId);
+    bool hasVertex(int vertexId);
 
-    //Verifica, a partir do id, se a aresta existe
-    bool existeAresta(int edgeId);
+    bool hasEdge(int edgeId);
 
-    //Insere aresta a partir de um id único vértice origem e destino passados
-    void inserirAresta(int edgeId, int originVertexId, int destinationVertexId, int weight);
+    void insertEdge(int edgeId, int originVertexId, int destinationVertexId, int weight);
 
-    //Adiciona um vértice adjacente a partir do vértice origem
-    void adicionarVerticeAdjacente(int idVertice, int idVerticeAdjacente);
+    /**
+     * Insere um vértice adjacente a partir do vértice origem.
+     */
+    void insertAdjacentVertex(int vertexId, int adjacentVertexId);
 
-    //Remove aresta a partir de um id único
-    void removerAresta(int idAresta);
+    void removeEdge(int idAresta);
 
-    //Remove um vértice adjacente a partir do vértice origem
-    void removerVerticeAdjacente(int idVertice, int idVerticeAdj);
+    /**
+     * Remove um vértice adjacente a partir do vértice origem.
+     */
+    void removeAdjacentVertex(int vertexId, int adjacentVertexId);
 
-    //Inserir novo vértice no vetor passando id único e valor do vértice
-    void inserirVertice(int idVertice, int dado);
+    /**
+     * Inserir um novo vértice no vetor, passando o id único e o valor do vértice.
+     */
+    void insertVertex(int vertexId, int data);
 
     //Remover vértice do grafo a partir do id
-    void removerVertice(int idVertice);
+    void removeVertex(int vertexId);
 
-    void removerVerticeDoGrafoPorId(int idVertice);
+    /**
+     * Exibe a lista de adjacências.
+     */
+    void showStructure();
 
-    //Exibe a lista de adjacência
-    void imprimirGrafo();
+    void showTreeWidth();
 
-    void buscaEmLargura();
+    void showTreeDepth();
 
-    void buscaEmProfundidade();
+    void showTreeDepthVisit(Vertex *u, int time);
 
-    void buscaEmProfundidadeVisita(Vertex *u, int tempo);
-
-    void buscaEmCaminhoMinimo();
+    void showShortestPath();
 };
 
 
