@@ -11,8 +11,10 @@ void Runner::run() {
         cin >> option;
 
         switch (option) {
+
             case Constants::Option::INSERT_VERTEX:
                 cout << "Type vertex id to insert :)";
+                this->breakLines();
                 cin >> vertexId;
 
                 if (graph->hasVertex(vertexId)) {
@@ -32,6 +34,7 @@ void Runner::run() {
 
             case Constants::Option::REMOVE_VERTEX:
                 cout << "Type vertex id to remove :)" << endl;
+                this->breakLines();
                 cin >> vertexId;
 
                 if (graph->hasVertex(vertexId)) {
@@ -51,6 +54,7 @@ void Runner::run() {
 
             case Constants::Option::INSERT_EDGE:
                 cout << "Type edge id to insert :)";
+                this->breakLines();
                 cin >> edgeId;
 
                 if (graph->hasEdge(edgeId)) {
@@ -62,14 +66,17 @@ void Runner::run() {
                 } else {
 
                     cout << "Type origin vertex id :)";
+                    this->breakLines();
                     cin >> originVertexId;
 
                     cout << "Type destination vertex id :)";
+                    this->breakLines();
                     cin >> destinationVertexId;
 
                     if (graph->hasVertex(originVertexId) && graph->hasVertex(destinationVertexId)) {
 
                         cout << "Type weight of edge :)";
+                        this->breakLines();
                         cin >> weight;
                         graph->insertEdge(edgeId, originVertexId, destinationVertexId, weight);
                     } else {
@@ -89,6 +96,7 @@ void Runner::run() {
 
             case Constants::Option::REMOVE_EDGE:
                 cout << "Type edge id to remove :)";
+                this->breakLines();
                 cin >> edgeId;
 
                 if (graph->hasEdge(edgeId)) {

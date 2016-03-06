@@ -1,5 +1,5 @@
-#ifndef GRAPHS_ARESTA_H
-#define GRAPHS_ARESTA_H
+#ifndef GRAPHS_EDGE_H
+#define GRAPHS_EDGE_H
 
 
 class Edge {

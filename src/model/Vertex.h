@@ -1,5 +1,5 @@
-#ifndef GRAPHS_VERTICE_H
-#define GRAPHS_VERTICE_H
+#ifndef GRAPHS_VERTEX_H
+#define GRAPHS_VERTEX_H
 
 #include <list>
 
@@ -10,7 +10,7 @@ class Vertex {
 public:
 
     int data, color, chronometer;
-    float vertexDistance;
+    int vertexDistance;
     Vertex *father;
     list<Vertex *> adjacentVertex;
     list<Vertex *>::iterator vertexIterator;
